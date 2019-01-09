@@ -23,3 +23,4 @@ splitRatio = 0.8; %ratio of training data of the whole
 rawData = extractData(path);
 [trainingData, testData] = splitData(rawData, splitRatio);
 eyesImages = getEyes(trainingData);
+HOGFeatures = getHOGFeatures(eyesImages);
