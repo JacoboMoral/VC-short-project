@@ -1,20 +1,12 @@
 function eyes = getEyes(data)
     for i = 1:length(data.imatges)
-        %leftEyePosition.x = data.eyes{i}.LX;
-        %leftEyePosition.y = data.eyes{i}.LY;
-        %rightEyePosition.x = data.eyes{i}.RX;
-        %rightEyePosition.y = data.eyes{i}.RY;
+    %for i = 1:50
+        rect = [data.eyes{i}.RX-17 min(data.eyes{i}.RY,data.eyes{i}.LY)-23 (data.eyes{i}.LX-data.eyes{i}.RX)+35 40 ];
+        eye = imcrop(data.imatges{i},rect);
         
-        leftRect = [data.eyes{i}.LX-15 data.eyes{i}.LY-5 30 15];
-        leftEye = imcrop(data.imatges{i},leftRect);       
-        %figure; imshow(leftEye);
+        %figure; imshow(eye);
         
-        rightRect = [data.eyes{i}.RX-15 data.eyes{i}.RY-5 30 15];
-        rightEye = imcrop(data.imatges{i},rightRect);
-        %figure; imshow(rightEye);
-        
-        eyes{i}.left = leftEye;
-        eyes{i}.right = rightEye;
+        eyes{i} = eye;
      end
 end
 
