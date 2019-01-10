@@ -25,5 +25,5 @@ rawData = extractData(path);
 [trainingData, testData] = splitData(rawData, splitRatio);
 [eyesImages, noEyesImages] = getEyesAndRest(trainingData, eyesRatio);
 
-HOGFeatures = getHOGFeatures(eyesImages);
-HOGFeatures = getHOGFeatures(noEyesImages);
+HOGFeaturesEyes = getHOGFeatures(eyesImages);
+HOGFeaturesNoEyes = getHOGFeatures(noEyesImages);

@@ -3,7 +3,7 @@ function [eyes, noEyes] = getEyesAndRest(data, eyesRatio)
     %newImagesPerEyesImage = 5
     
     for i = 1:length(data.imatges)
-    %for i = 1:50
+    %for i = 1:3
         rect = [data.eyes{i}.RX-17 min(data.eyes{i}.RY,data.eyes{i}.LY)-23 (data.eyes{i}.LX-data.eyes{i}.RX)+35 40 ];
         eye = imcrop(data.imatges{i},rect);
         
@@ -18,7 +18,7 @@ function [eyes, noEyes] = getEyesAndRest(data, eyesRatio)
             %noEyesRect = [380 280 4 4];
             noEye = imcrop(data.imatges{i},noEyesRect);
             %figure; imshow(noEye);
-            noEyes{i*(newImagesPerEyesImage-1) + j} = noEye;
+            noEyes{(i-1)*newImagesPerEyesImage + j} = noEye;
         end
      end
 end
