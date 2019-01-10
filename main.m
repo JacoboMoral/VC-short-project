@@ -24,4 +24,6 @@ eyesRatio = 0.05; %ratio of images being actual eyes
 rawData = extractData(path);
 [trainingData, testData] = splitData(rawData, splitRatio);
 [eyesImages, noEyesImages] = getEyesAndRest(trainingData, eyesRatio);
+
 HOGFeatures = getHOGFeatures(eyesImages);
+HOGFeatures = getHOGFeatures(noEyesImages);
