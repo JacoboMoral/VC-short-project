@@ -15,19 +15,15 @@ function [rect] = getNoEyesRect(imageSize,forbiddenRect)
     
     d = -1;
     %d = height (vertical)
-    
-    %{
     imageSize
     forbiddenRect
     a
     b
     c
-    %}
-    
     while d < 0
         d = randi(imageSize(1)-b);
         
-        if ( (a <= forbiddenRect(1)+5 && c >= (forbiddenRect(1) - a+5) || (a >= forbiddenRect(1)+5 && (a <= (forbiddenRect(1)+forbiddenRect(3)-5))) ) && (b <= forbiddenRect(2)+5 && d >= (forbiddenRect(2) - b+5) || (b >= forbiddenRect(2)+5 && (b <= (forbiddenRect(2)+forbiddenRect(4)-5))) ))
+        if ( (a <= forbiddenRect(1)-5 && c >= (forbiddenRect(1) - a+5) || (a >= forbiddenRect(1)+5 && (a <= (forbiddenRect(1)+forbiddenRect(3)))) ) && (b <= forbiddenRect(2) && d >= (forbiddenRect(2) - b) || (b >= forbiddenRect(2) && (b <= (forbiddenRect(2)+forbiddenRect(4)))) ))
             d = -1;
         end
 
