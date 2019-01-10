@@ -16,11 +16,12 @@
 clear;
 close all;
 
+%CONSTANTS
 path = strcat(pwd,'./raw_data/');
 splitRatio = 0.8; %ratio of training data of the whole
-
+eyesRatio = 0.05; %ratio of images being actual eyes
 
 rawData = extractData(path);
 [trainingData, testData] = splitData(rawData, splitRatio);
-eyesImages = getEyes(trainingData);
+[eyesImages, noEyesImages] = getEyesAndRest(trainingData, eyesRatio);
 HOGFeatures = getHOGFeatures(eyesImages);
