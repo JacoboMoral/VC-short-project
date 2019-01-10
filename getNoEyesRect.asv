@@ -1,13 +1,7 @@
 function [rect] = getNoEyesRect(imageSize,forbiddenRect)
     
-    a = -1;    
     %a = xmin (horizontal)
-    while a < 0
-        a = randi(imageSize(1)); 
-        if (a >= forbiddenRect(1) && a <= (forbiddenRect(1)+forbiddenRect(3)))
-            a = -1;
-        end
-    end
+    a = randi(imageSize(1)); 
     
     b = -1;
     %b = ymin (vertical)
@@ -18,26 +12,20 @@ function [rect] = getNoEyesRect(imageSize,forbiddenRect)
         end
     end
     
-    c = -1;
-    %c = width (horizontal)
-    while c < 0
-        c = randi(imageSize(1)-a)+a; 
-        if (c >= forbiddenRect(1) && c <= (forbiddenRect(1)+forbiddenRect(3)))
-            c = -1;
-        else if (a)
-            c = -1;
-        end
-    end
+    c = randi(imageSize(1)-a)+a;
     
     d = -1;
     %d = height (vertical)
-    while b < 0
-        bb = randi(imageSize(2)); 
-        if (b >= forbiddenRect(2) && b <= (forbiddenRect(2)+forbiddenRect(4)))
-            b = -1;
+    while d < 0
+        d = randi(forbiddenRect(2)-b); 
+        
+        a <= (forbiddenRect(1)+forbiddenRect(3))
+        if ( (a <= forbiddenRect(1) && c >= (forbiddenRect(1) - a) || (a >= forbiddenRect(1) && (a <= (forbiddenRect(1)+c)) ) && b >= forbiddenRect(2) && d >= (forbiddenRect(2) - b))
+            d = -1;
         end
+
     end
     
-    rect = [a b c d]
+    rect = [a b c d];
 end
 
