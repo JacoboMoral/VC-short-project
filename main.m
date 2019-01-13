@@ -27,11 +27,11 @@ rawData = extractData(path);
 
 [looksImages, noLooksImages] = getLooksAndRest(eyesImages, rawData.looking);
 
-HOGFeaturesEyes = getHOGFeatures(eyesImages, 1);
-HOGFeaturesNoEyes = getHOGFeatures(noEyesImages, 0);
+featuresEyes = extractFeatures(eyesImages, 1);
+featuresNoEyes = extractFeatures(noEyesImages, 0);
 %HogFeaturesEyesAndNoEyes = mash(HOGFeaturesEyes, HOGFeaturesNoEyes);
 
-[X, y] = extractInfoFromHOGFeatures(HOGFeaturesEyes);
+[X, y] = extractMatrixFromFeatures(featuresEyes);
 
 
 [trainingEyes, testEyes] = splitData(rawData, splitRatio);
@@ -43,4 +43,4 @@ HOGFeaturesNoEyes = getHOGFeatures(noEyesImages, 0);
 
 
 %training of model using TreeBagger
-model = TreeBagger(100,X,y);
+model = TreeBagger(100,X, y);

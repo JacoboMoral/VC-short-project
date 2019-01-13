@@ -1,4 +1,4 @@
-function [matrix, array] = extractInfoFromHOGFeatures(HOGObject)
+function [matrix, array] = extractMatrixFromFeatures(HOGObject)
     
     
     %matrix = ['ulls', 'HOGAverage', 'HOGMedian', 'HOGMax', 'HOGMin'];
