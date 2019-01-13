@@ -21,19 +21,26 @@ path = strcat(pwd,'./raw_data/');
 splitRatio = 0.8; %ratio of training data of the whole
 eyesRatio = 0.05; %ratio of images being actual eyes
 
-%read data and store it
 rawData = extractData(path);
 
-%split dataset
-[trainingData, testData] = splitData(rawData, splitRatio);
+[eyesImages, noEyesImages] = getEyesAndRest(rawData, eyesRatio);
 
-%del training -> recortar ojos y recortar no ojos * 10
-[eyesImages, noEyesImages] = getEyesAndRest(trainingData, eyesRatio);
+[looksImages, noLooksImages] = getLooksAndRest(eyesImages, rawData.looking);
 
-%get looks (ulls tancats o oberts)
-[looksImages, noLooksImages] = getLooksAndRest(eyesImages, trainingData.looking);
+HOGFeaturesEyes = getHOGFeatures(eyesImages, 1);
+HOGFeaturesNoEyes = getHOGFeatures(noEyesImages, 0);
+%HogFeaturesEyesAndNoEyes = mash(HOGFeaturesEyes, HOGFeaturesNoEyes);
 
-%extreure caracteristiques ulls
-HOGFeaturesEyes = getHOGFeatures(eyesImages);
+[X, y] = extractInfoFromHOGFeatures(HOGFeaturesEyes);
 
 
+[trainingEyes, testEyes] = splitData(rawData, splitRatio);
+
+[trainingLooks, testLooks] = splitData(rawData, splitRatio);
+
+
+%preparar
+
+
+%training of model using TreeBagger
+model = TreeBagger(100,X,y);
