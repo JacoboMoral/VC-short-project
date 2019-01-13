@@ -1,21 +1,21 @@
 function [trainingData, testData] = splitData(inputData, trainingRatio)
 %0 <= trainingRatio <= 1
     
-    trainingDataLength = round(trainingRatio*length(inputData.imatges));
+    trainingDataLength = round(trainingRatio*length(inputData));
     
     %training
     for i = 1:trainingDataLength
-        dataFields = fieldnames(inputData);
+        dataFields = fieldnames(inputData{i});
         for j = 1:numel(dataFields)
-            trainingData.(dataFields{j}){i} = inputData.(dataFields{j}){i};
+            trainingData.(dataFields{j}){i} = inputData{i}.(dataFields{j});
         end
     end
     
     %test
-    for i = trainingDataLength+1:length(inputData.imatges)
-        dataFields = fieldnames(inputData);
+    for i = trainingDataLength+1:length(inputData)
+        dataFields = fieldnames(inputData{i});
         for j = 1:numel(dataFields)
-            testData.(dataFields{j}){i-trainingDataLength} = inputData.(dataFields{j}){i};
+            testData.(dataFields{j}){i-trainingDataLength} = inputData{i}.(dataFields{j});
         end
     end
 

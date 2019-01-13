@@ -8,12 +8,18 @@ function [features] = extractFeatures(imageArray, boolean)
         
         %HOG features
         [featureVector,hogVisualization] = extractHOGFeatures(imageArray{i});
-        features{i}.featureVector = featureVector;
-        features{i}.hogVisualization = hogVisualization;
+        %features{i}.hogVisualization = hogVisualization;
+        features{i}.featureVectorMean = mean(featureVector);
+        features{i}.featureVectorMedian = median(featureVector);
+        features{i}.featureVectorMax = max(featureVector);
+        features{i}.featureVectorMin = min(featureVector);
         
         %LBP features
         lbp = extractLBPFeatures(imageArray{i});
-        features{i}.lbp = lbp;
+        features{i}.lbpMean = mean(lbp);
+        features{i}.lbpMedian = median(lbp);
+        features{i}.lbpMax = max(lbp);
+        features{i}.lbpMin = min(lbp);
     end
 
 end

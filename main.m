@@ -29,14 +29,13 @@ rawData = extractData(path);
 
 featuresEyes = extractFeatures(eyesImages, 1);
 featuresNoEyes = extractFeatures(noEyesImages, 0);
-%HogFeaturesEyesAndNoEyes = mash(HOGFeaturesEyes, HOGFeaturesNoEyes);
+featuresEyesAndNoEyes = mash(featuresEyes, featuresNoEyes);
 
-[X, y] = extractMatrixFromFeatures(featuresEyes);
+[trainingEyes, testEyes] = splitData(featuresEyesAndNoEyes, splitRatio);
+%[trainingLooks, testLooks] = splitData(rawData, splitRatio);
 
-
-[trainingEyes, testEyes] = splitData(rawData, splitRatio);
-
-[trainingLooks, testLooks] = splitData(rawData, splitRatio);
+y = extractYFromFeatures(featuresEyes);
+X = extractMatrixFromFeatures(featuresEyes);
 
 
 %preparar

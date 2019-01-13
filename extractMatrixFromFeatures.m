@@ -1,27 +1,16 @@
-function [matrix, array] = extractMatrixFromFeatures(HOGObject)
+function [X] = extractMatrixFromFeatures(dataObject)
     
-    
-    %matrix = ['ulls', 'HOGAverage', 'HOGMedian', 'HOGMax', 'HOGMin'];
-    matrix = [];
-    array = [];
+    X = [];
     %for i = 1:3
-    for i = 1:length(HOGObject)
-        aux = [mean(HOGObject{i}.featureVector), median(HOGObject{i}.featureVector), max(HOGObject{i}.featureVector), min(HOGObject{i}.featureVector)];
-        array = [array; HOGObject{i}.ull];
-        matrix = [matrix; aux];
+    for i = 1:length(dataObject)
+        
+        aux = [];
+        dataFields = fieldnames(dataObject{i});
+        for j = 1:numel(dataFields)
+            aux = [aux, dataObject{i}.(dataFields{j})];
+        end
+        
+        X = [X; aux];
     end
-    
-    
-    %{
-    for i = 1:3
-    %for i = 1:length(HOGObject)
-        matrix.ull{i} = HOGObject{i}.ull;
-        matrix.mean{i} = mean(HOGObject{i}.featureVector);
-        matrix.median{i} = median(HOGObject{i}.featureVector);
-        matrix.max{i} = max(HOGObject{i}.featureVector);
-        matrix.min{i} = min(HOGObject{i}.featureVector);
 
-    end 
-    %}
 end
-
