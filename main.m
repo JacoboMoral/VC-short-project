@@ -25,7 +25,7 @@ path = strcat(pwd,'./raw_data/');
 splitRatio = 0.8; %ratio of training data of the whole
 eyesRatio = 0.05; %ratio of images being actual eyes
 
-
+%{
 rawData = extractData(path);
 
 [eyesImages, noEyesImages] = getEyesAndRest(rawData, eyesRatio);
@@ -34,7 +34,7 @@ rawData = extractData(path);
 
 %clear rawData;
 
-
+%}
 featuresEyes = extractFeatures(eyesImages, 1);
 
 %clear eyesImages;

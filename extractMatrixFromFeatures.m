@@ -13,7 +13,9 @@ function [X] = extractMatrixFromFeatures(dataObject)
         X = [X; aux];
         
         if(mod(i,1000) == 1)
-            strcat(num2str(round(i/length(dataObject.ull))),'% completed')
+            tpu = i/length(dataObject.ull);
+            tpc = tpu * 100;
+            strcat(num2str(round(tpc)),'% completed')
         end
     end
 
