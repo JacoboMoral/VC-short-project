@@ -1,6 +1,8 @@
 function [trainingData, testData] = splitData(inputData, trainingRatio)
 %0 <= trainingRatio <= 1
     
+    status = 'starting data splitting'
+
     trainingDataLength = round(trainingRatio*length(inputData));
     
     %training
@@ -19,5 +21,6 @@ function [trainingData, testData] = splitData(inputData, trainingRatio)
         end
     end
 
+    status = 'ending data splitting'
 end
 

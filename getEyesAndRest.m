@@ -1,4 +1,6 @@
 function [eyes, noEyes] = getEyesAndRest(data, eyesRatio)
+    status = 'starting eyes and rest generation'
+    
     newImagesPerEyesImage = round(1/eyesRatio);
     %newImagesPerEyesImage = 5
     
@@ -20,5 +22,7 @@ function [eyes, noEyes] = getEyesAndRest(data, eyesRatio)
             %figure; imshow(noEye);
             noEyes{(i-1)*newImagesPerEyesImage + j} = noEye;
         end
-     end
+    end
+     
+    status = 'ending eyes and rest generation'
 end

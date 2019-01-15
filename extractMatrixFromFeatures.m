@@ -1,16 +1,17 @@
 function [X] = extractMatrixFromFeatures(dataObject)
-    
+    status = 'starting matrix extraction from features'
+
+    dataFields = fieldnames(dataObject);
     X = [];
     %for i = 1:3
-    for i = 1:length(dataObject)
+    for i = 1:length(dataObject.ull)
         
         aux = [];
-        dataFields = fieldnames(dataObject{i});
-        for j = 1:numel(dataFields)
-            aux = [aux, dataObject{i}.(dataFields{j})];
+        for j = 2:numel(dataFields)
+            aux = [aux, dataObject.(dataFields{j}){i}];
         end
-        
         X = [X; aux];
     end
 
+   status = 'ending matrix extraction from features'
 end

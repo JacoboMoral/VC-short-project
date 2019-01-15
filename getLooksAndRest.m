@@ -1,5 +1,6 @@
 function [looksImages, noLooksImages] = getLooksAndRest(eyesImages, looking)
-    
+    status = 'starting looks gathering'
+
     j = 1;
     k = 1;
     for i = 1:length(eyesImages)
@@ -13,5 +14,6 @@ function [looksImages, noLooksImages] = getLooksAndRest(eyesImages, looking)
         end
     end
         
+    status = 'finishing looks gathering'
 end
 
