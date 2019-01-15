@@ -6,7 +6,7 @@ path = strcat(pwd,'./raw_data/');
 splitRatio = 0.8; %ratio of training data of the whole
 eyesRatio = 0.05; %ratio of images being actual eyes
 
-%{
+
 rawData = extractData(path);
 
 [eyesImages, noEyesImages] = getEyesAndRest(rawData, eyesRatio);
@@ -22,8 +22,8 @@ featuresLooksAndNoLooks = mash(featuresLooks, featuresNoLooks);
 
 [trainingEyes, testEyes] = splitData(featuresEyesAndNoEyes, splitRatio);
 [trainingLooks, testLooks] = splitData(featuresLooksAndNoLooks, splitRatio);
-%}
-%{
+
+
 yeyes = extractYFromFeatures(trainingEyes);
 Xeyes = extractMatrixFromFeatures(trainingEyes);
 
@@ -40,13 +40,13 @@ XeyesTesting = extractMatrixFromFeatures(testEyes);
 
 ylooksTesting = extractYFromFeatures(testLooks);
 XlooksTesting = extractMatrixFromFeatures(testLooks);
-%}
+
 p1 = test(eyesPredictionModel, XeyesTesting);
 p1 = str2num(cell2mat(p1));
-conf1 = confusionmat(p1, yeyesTesting);
+conf1 = confusionmat(yeyesTesting, p1);
 
 p2 = test(looksPredictionFromEyesModel, XlooksTesting);
 p2 = str2num(cell2mat(p2));
-conf2 = confusionmat(p2, ylooksTesting);
+conf2 = confusionmat(ylooksTesting, p2);
 
-slidingWindow()
+%slidingWindow()
