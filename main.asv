@@ -1,3 +1,22 @@
+%read data and store it
+
+%split dataset -> 20% test; 80% training
+
+%del training -> recortar ojos y recortar no ojos * 10
+
+%extreure caracteristiques ulls
+
+%aplicar algoritmo clasificador a las caracteristicas anteriores para
+%entrenar
+
+%usar dataset test para comprovar la precision
+
+%SE TIENE QUE *CREAR* LAS IMAGENES DE OJOS ANTES O DESPUES DEL SPLIT??
+
+
+
+
+
 %clear;
 close all;
 
@@ -6,7 +25,7 @@ path = strcat(pwd,'./raw_data/');
 splitRatio = 0.8; %ratio of training data of the whole
 eyesRatio = 0.05; %ratio of images being actual eyes
 
-%{
+
 rawData = extractData(path);
 
 [eyesImages, noEyesImages] = getEyesAndRest(rawData, eyesRatio);
@@ -22,7 +41,7 @@ featuresLooksAndNoLooks = mash(featuresLooks, featuresNoLooks);
 
 [trainingEyes, testEyes] = splitData(featuresEyesAndNoEyes, splitRatio);
 [trainingLooks, testLooks] = splitData(featuresLooksAndNoLooks, splitRatio);
-%}
+
 %{
 yeyes = extractYFromFeatures(trainingEyes);
 Xeyes = extractMatrixFromFeatures(trainingEyes);
@@ -40,7 +59,7 @@ XeyesTesting = extractMatrixFromFeatures(testEyes);
 
 ylooksTesting = extractYFromFeatures(testLooks);
 XlooksTesting = extractMatrixFromFeatures(testLooks);
-%}
+}
 p1 = test(eyesPredictionModel, XeyesTesting);
 p1 = str2num(cell2mat(p1));
 conf1 = confusionmat(p1, yeyesTesting);
@@ -49,4 +68,3 @@ p2 = test(looksPredictionFromEyesModel, XlooksTesting);
 p2 = str2num(cell2mat(p2));
 conf2 = confusionmat(p2, ylooksTesting);
 
-slidingWindow()

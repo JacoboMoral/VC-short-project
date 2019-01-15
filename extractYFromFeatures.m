@@ -3,8 +3,8 @@ function [y] = extractYFromFeatures(dataObject)
 
     y = [];
     %for i = 1:3
-    for i = 1:length(dataObject.ull)
-        y = [y; dataObject.ull{i}];
+    for i = 1:length(dataObject.y)
+        y = [y; dataObject.y{i}];
     end
     
     status = 'ending y extraction from features'
