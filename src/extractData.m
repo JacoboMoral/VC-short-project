@@ -9,6 +9,16 @@ function [rawData] = extractData(path)
        rawData.imatges{i} = imread(strcat(path, rawImatges(i).name));
        rawData.eyes{i} = getEyesCoordinates(strcat(path, rawEyesCoords(i).name));
        rawData.looking = strsplit(fileread(lookingFile.name));
+       
+       
+       if(mod(i,10) == 1)
+            tpu = i/length(rawImatges);
+            tpc = tpu * 100;
+            clc
+            status = 'start data extraction'
+            strcat(num2str(round(tpc)),'% completed')
+        end
+       
     end
     
     status = 'end data extraction'
