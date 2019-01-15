@@ -11,6 +11,10 @@ function [X] = extractMatrixFromFeatures(dataObject)
             aux = [aux, dataObject.(dataFields{j}){i}];
         end
         X = [X; aux];
+        
+        if(mod(i,1000) == 1)
+            strcat(num2str(round(i/length(dataObject.ull))),'% completed')
+        end
     end
 
    status = 'ending matrix extraction from features'
