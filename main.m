@@ -1,4 +1,4 @@
-%clear;
+%close all windows;
 close all;
 
 %CONSTANTS
@@ -48,5 +48,3 @@ conf1 = confusionmat(yeyesTesting, p1);
 p2 = test(looksPredictionFromEyesModel, XlooksTesting);
 p2 = str2num(cell2mat(p2));
 conf2 = confusionmat(ylooksTesting, p2);
-
-%slidingWindow()
