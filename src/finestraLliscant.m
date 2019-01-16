@@ -1,10 +1,10 @@
+close all; 
+figure;
+I = imread('BioID_0001.pgm'); %image to test
+imshow(I);
+h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
 my_timer = test();
-    %{
-    figure;
-    I = imread('BioID_0001.pgm');
-    imshow(I);
-    h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
-    %}
+
     
 function a = test
     
@@ -14,11 +14,7 @@ function a = test
 end
 
 function myfun(obj,evt)
-    rect = evalin('base', 'h'); figure;
-    I = imread('BioID_0001.pgm');
-    I = rgb2gray(I);
-    imshow(I);
-    h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
+    rect = evalin('base', 'h');
     cropRect = rect.Position;
     image = evalin('base', 'I');
     J = imcrop(image, rect.Position);
