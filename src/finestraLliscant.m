@@ -3,17 +3,18 @@ figure;
 I = imread('BioID_0001.pgm'); %image to test
 imshow(I);
 h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
-my_timer = test();
+
+timer = interval();
 
     
-function a = test
+function a = interval
     
-    a = timer('ExecutionMode','fixedRate','Period',0.8,'TimerFcn',@myfun);
+    a = timer('ExecutionMode','fixedRate','Period',0.8,'TimerFcn',@slidingWindow);
     start(a);
     
 end
 
-function myfun(obj,evt)
+function slidingWindow(obj,evt)
     rect = evalin('base', 'h');
     cropRect = rect.Position;
     image = evalin('base', 'I');
