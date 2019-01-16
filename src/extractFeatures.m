@@ -4,7 +4,6 @@ function [features] = extractFeatures(imageArray, boolean)
     features = [];
     for i = 1:length(imageArray)
         %aux = [boolean];
-        features{i}.y = boolean;
         
         I = imageArray{i};
         I = imresize(I, [64 64]);

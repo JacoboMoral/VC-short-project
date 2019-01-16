@@ -7,16 +7,23 @@ my_timer = test();
     
 function a = test
     
-    a = timer('ExecutionMode','fixedRate','Period',5,'TimerFcn',@myfun);
+    a = timer('ExecutionMode','fixedRate','Period',1,'TimerFcn',@myfun);
     start(a);
+    
 end
 
 function myfun(obj,evt)
-    figure;
     rect = evalin('base', 'h');
     cropRect = rect.Position;
     I = imread('BioID_0000.pgm');
     J = imcrop(I, rect.Position);
-    imshow(J);
+    features = extractFeaturesSingleImage(J);
+    model = evalin('base', 'eyesPredictionModel');
+    prediction = predict(model, features);
+    if(prediction{1} == '1')
+        disp('Predicció d''ulls: VERITAT');
+    else
+        disp('Predicció d''ulls: true');
+    end
     disp('===============');
 end
