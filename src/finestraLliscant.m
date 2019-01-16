@@ -1,6 +1,6 @@
 close all; 
 figure;
-I = imread('BioID_0001.pgm'); %image to test
+I = imread('BioID_0456.pgm'); %image to test
 imshow(I);
 h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
 
