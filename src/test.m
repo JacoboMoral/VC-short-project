@@ -1,8 +1,8 @@
 function [predictions] = test(model, testData)
-    status = 'starting testing'
+    disp('status: starting testing');
     
     predictions = predict(model, testData);
     
-    status = 'ending testing'
+    disp('status: ending testing');
 end
 
