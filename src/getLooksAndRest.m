@@ -1,5 +1,5 @@
 function [looksImages, noLooksImages] = getLooksAndRest(eyesImages, looking)
-    status = 'starting looks gathering'
+    disp('status: starting looks gathering');
 
     j = 1;
     k = 1;
@@ -14,6 +14,6 @@ function [looksImages, noLooksImages] = getLooksAndRest(eyesImages, looking)
         end
     end
         
-    status = 'finishing looks gathering'
+    disp('status: finishing looks gathering');
 end
 

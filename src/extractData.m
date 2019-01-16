@@ -1,5 +1,5 @@
 function [rawData] = extractData(path)
-    status = 'start data extraction'
+    disp('status: start data extraction');
 
     rawImatges = dir(strcat(path, '*.pgm'));
     rawEyesCoords = dir(strcat(path, '*.eye'));
@@ -15,11 +15,15 @@ function [rawData] = extractData(path)
             tpu = i/length(rawImatges);
             tpc = tpu * 100;
             clc
-            status = 'start data extraction'
-            strcat(num2str(round(tpc)),'% completed')
-        end
-       
+            disp('status: extracting data from images');
+            status = strcat(num2str(round(tpc)),'% completed');
+            disp(status);
+       end       
     end
+    clc
+    disp('status: extracting data from images');
+    status = '100% completed';
+    disp(status);
     
-    status = 'end data extraction'
+    disp('status: start data extraction');
 end

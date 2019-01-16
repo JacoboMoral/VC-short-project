@@ -1,7 +1,8 @@
 my_timer = test();
     %{
     figure;
-    imshow('BioID_0001.pgm');
+    I = imread('BioID_0001.pgm');
+    imshow(I);
     h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
     %}
     
@@ -13,10 +14,14 @@ function a = test
 end
 
 function myfun(obj,evt)
-    rect = evalin('base', 'h');
+    rect = evalin('base', 'h'); figure;
+    I = imread('BioID_0001.pgm');
+    I = rgb2gray(I);
+    imshow(I);
+    h = drawrectangle('Color', [1 1 0], 'Position', [2, 2, 120, 40]);
     cropRect = rect.Position;
-    I = imread('BioID_0000.pgm');
-    J = imcrop(I, rect.Position);
+    image = evalin('base', 'I');
+    J = imcrop(image, rect.Position);
     features = extractFeaturesSingleImage(J);
     modelUlls = evalin('base', 'eyesPredictionModel');
     prediction = predict(modelUlls, features);

@@ -1,9 +1,11 @@
 function [features] = extractFeatures(imageArray, boolean)
-    status = 'start features extraction'
+    
+    disp('status: start features extraction');
     %for i = 1:1
     features = [];
     for i = 1:length(imageArray)
         %aux = [boolean];
+        features{i}.y = boolean;
         
         I = imageArray{i};
         I = imresize(I, [64 64]);
@@ -21,14 +23,18 @@ function [features] = extractFeatures(imageArray, boolean)
             clc
             tpu = i/length(imageArray);
             tpc = tpu * 100;
-            status = 'start features extraction'
-            strcat(num2str(round(tpc)),'% completed')
+            disp('status: extracting features from data');
+            status = strcat(num2str(round(tpc)),'% completed');
+            disp(status);
         end
-        
         %features = [features; aux];
         
     end
+    clc
+    disp('status: extracting features from data');
+    status = '100% completed';
+    disp(status);
     
-    status = 'end features extraction'
+    disp('end features extraction');
 end
 

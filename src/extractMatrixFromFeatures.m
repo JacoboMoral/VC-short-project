@@ -1,5 +1,5 @@
 function [X] = extractMatrixFromFeatures(dataObject)
-    status = 'starting matrix extraction from features'
+    disp('status: starting matrix generation from features object');
 
     dataFields = fieldnames(dataObject);
     X = [];
@@ -16,10 +16,15 @@ function [X] = extractMatrixFromFeatures(dataObject)
             tpu = i/length(dataObject.y);
             tpc = tpu * 100;
             clc
-            status = 'starting matrix extraction from features'
-            strcat(num2str(round(tpc)),'% completed')
+            disp('status: generating matrix from features object');
+            status = strcat(num2str(round(tpc)),'% completed');
+            disp(status);
         end
     end
+    clc
+    disp('status: generating matrix from features object');
+    status = '100% completed';
+    disp(status);
 
-   status = 'ending matrix extraction from features'
+    disp('status: ending matrix generation from features object');
 end

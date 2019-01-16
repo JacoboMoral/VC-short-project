@@ -1,5 +1,5 @@
 function [y] = extractYFromFeatures(dataObject)
-    status = 'starting y extraction from features'
+    disp('status: starting y extraction from features')
 
     y = [];
     %for i = 1:3
@@ -7,5 +7,5 @@ function [y] = extractYFromFeatures(dataObject)
         y = [y; dataObject.y{i}];
     end
     
-    status = 'ending y extraction from features'
+    disp('status: ending y extraction from features');
 end
